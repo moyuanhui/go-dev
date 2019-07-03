@@ -12,7 +12,7 @@ func init() {
 	RegisterBalancer("random", &RandomBalance{})
 }
 
-func (p *RandomBalance) DoBalance(insts []*Instance) (inst *Instance, err error) {
+func (p *RandomBalance) DoBalance(insts []*Instance, key ...string) (inst *Instance, err error) {
 	if len(insts) == 0 {
 		err = errors.New("No Instance")
 		return

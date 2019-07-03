@@ -5,7 +5,6 @@ import (
 	"go_dev/day7/example1/balance"
 	"math/rand"
 	"os"
-	"time"
 )
 
 func main() {
@@ -32,21 +31,30 @@ func main() {
 
 	// }
 
-	conf := "random"
-	// var balancer balance.IBalancer
-	if len(os.Args) > 1 {
-		conf = os.Args[1]
-	}
+	// conf := "random"
+	// // var balancer balance.IBalancer
+	// if len(os.Args) > 1 {
+	// 	conf = os.Args[1]
+	// }
 
-	for {
-		// inst, err := balancer.DoBalance()
-		inst, err := balance.DoBalance(conf, insts)
-		if err != nil {
-			fmt.Println("do balance err:", err)
-			continue
-		}
-		// fmt.Printf("%s:%d", inst.GetHost(), inst.GetPort())
-		fmt.Println(inst)
-		time.Sleep(time.Second)
+	// for {
+	// 	// inst, err := balancer.DoBalance()
+	// 	inst, err := balance.DoBalance(conf, insts)
+	// 	if err != nil {
+	// 		fmt.Println("do balance err:", err)
+	// 		fmt.Fprintf(os.Stdout, "do balance \n")
+	// 		continue
+	// 	}
+	// 	// fmt.Printf("%s:%d", inst.GetHost(), inst.GetPort())
+	// 	fmt.Println(inst)
+	// 	time.Sleep(time.Second)
+	// }
+
+	file, err := os.OpenFile("D:/test.log", os.O_CREATE|os.O_WRONLY, 0664)
+	if err != nil {
+		fmt.Print("open file error:", err)
+		return
 	}
+	fmt.Fprintf(file, "do balance err \n")
+	file.Close()
 }
