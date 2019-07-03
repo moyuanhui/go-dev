@@ -18,5 +18,4 @@ func main() {
 	fmt.Sscan(input, format, &f, &i, &s)
 	fmt.Println("From the string we read:", f, i, s)
 
-	
 }
