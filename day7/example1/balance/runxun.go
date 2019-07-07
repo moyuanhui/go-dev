@@ -10,7 +10,7 @@ func init() {
 	RegisterBalancer("runxun", &RunxunBalance{})
 }
 
-func (p *RunxunBalance) DoBalance(insts []*Instance) (inst *Instance, err error) {
+func (p *RunxunBalance) DoBalance(insts []*Instance, key ...string) (inst *Instance, err error) {
 	if len(insts) == 0 {
 		err = errors.New("Instance is empty")
 		return

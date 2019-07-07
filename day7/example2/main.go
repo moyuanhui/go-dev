@@ -1,36 +1,21 @@
 package main
 
-//读取压缩包文件
-import (
-	"bufio"
-	"compress/gzip"
-	"fmt"
-	"os"
+import "fmt"
+
+var (
+	firstName, lastName, s string
+	i                      int
+	f                      float32
+	input                  = "56.12 / 5212 /Go"
+	format                 = "%f / %d / %s"
 )
 
 func main() {
-	fName := "D:\\go.gz"
-	var r *bufio.Reader
-	fi, err := os.Open(fName)
+	fmt.Println("Please enter your full name:")
+	fmt.Scanln(&firstName, &lastName)
+	fmt.Scanf("%s %s", &firstName, &lastName)
+	fmt.Printf("Hi %s %s\n", firstName, lastName)
+	fmt.Sscan(input, format, &f, &i, &s)
+	fmt.Println("From the string we read:", f, i, s)
 
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "%v, Can't open %s error:%s\n", os.Args[0], fName, err)
-		os.Exit(1)
-	}
-
-	fz, err := gzip.NewReader(fi)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "open gzip failed err:%v\n", err)
-		return
-	}
-
-	r = bufio.NewReader(fz)
-	for {
-		line, err := r.ReadString('\n')
-		if err != nil {
-			fmt.Println("Done reading file")
-			os.Exit(0)
-		}
-		fmt.Println(line)
-	}
 }

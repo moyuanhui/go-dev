@@ -1,5 +1,5 @@
 package balance
 
 type IBalancer interface {
-	DoBalance(insts []*Instance) (instance *Instance, err error)
+	DoBalance(insts []*Instance, key ...string) (instance *Instance, err error)
 }

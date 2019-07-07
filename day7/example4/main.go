@@ -1,30 +1,23 @@
 package main
 
-//拷贝文件
 import (
+	"bufio"
 	"fmt"
-	"io"
 	"os"
+)
+
+var (
+	inputReader *bufio.Reader
+	input       string
+	err         error
 )
 
 func main() {
 
-	copyFile("D:\\go.gz1", "D:\\go.gz")
-	fmt.Println("Copy done!")
-}
-
-func copyFile(distName, srcName string) (written int64, error error) {
-	src, err := os.Open(srcName)
-	if err != nil {
-		return
+	inputReader = bufio.NewReader(os.Stdin)
+	fmt.Println("Please enter some input:")
+	input, err = inputReader.ReadString('\n')
+	if err == nil {
+		fmt.Printf("The input was:%s\n", input)
 	}
-
-	defer src.Close()
-	dst, err := os.OpenFile(distName, os.O_WRONLY|os.O_CREATE, 0644)
-	if err != nil {
-		return
-	}
-	defer dst.Close()
-	return io.Copy(dst, src)
-
 }
