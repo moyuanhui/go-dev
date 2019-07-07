@@ -26,12 +26,12 @@ func InitLogger() (err error) {
 
 	config := make(map[string]interface{})
 	config["filename"] = appconfig.AppConf.LogPath
-	config["level"] = logs.LevelDebug
+	config["level"] = converLogLevel(appconfig.AppConf.LogLevel)
 
 	configStr, err := json.Marshal(config)
 
 	if err != nil {
-		fmt.Println("marshal failed ,err:", err)
+		fmt.Println("initLogger failed marshal failed ,err:", err)
 		return
 	}
 
